@@ -26,6 +26,13 @@ export async function middleware(request: NextRequest) {
         throw new Error(error?.message)
       }
 
+//     const url = request.url.clone();
+//     const requestedPort = request.headers.get('X-Forwarded-Port');
+//     const requestedProto = request.headers.get('X-Forwarded-Proto');
+     
+//     url.protocol = requestedProto || url.protocol;
+//     url.port = requestedPort || url.port;
+
       return NextResponse.redirect(
         new URL(`/${homeWorkspace.id}/chat`, request.url)
       )
