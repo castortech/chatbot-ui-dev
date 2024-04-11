@@ -136,6 +136,7 @@ export const createFile = async (
   })
 
   if (!response.ok) {
+    console.error(`Error processing file: ${createdFile.id}, response:${response.statusText}`, error)
     toast.error("Failed to process file.")
     await deleteFile(createdFile.id)
   }
@@ -193,6 +194,7 @@ export const createDocXFile = async (
   })
 
   if (!response.ok) {
+    console.error(`Error processing docx file: ${createdFile.id}, response:${response.statusText}`, error)
     toast.error("Failed to process file.")
     await deleteFile(createdFile.id)
   }
