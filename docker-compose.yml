@@ -1,0 +1,7 @@
+services:
+  chatbotui:
+    container_name: chatbot-ui
+    image: chatbot-ui
+    expose:
+      - "3000"
+
