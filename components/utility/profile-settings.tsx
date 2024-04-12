@@ -615,7 +615,7 @@ export const ProfileSettings: FC<ProfileSettingsProps> = ({}) => {
                           <Input
                             placeholder="OpenAI Organization ID (optional)"
                             disabled={
-                              !!process.env.NEXT_PUBLIC_OPENAI_ORGANIZATION_ID
+                              !!process.env.OPENAI_ORGANIZATION_ID
                             }
                             type="password"
                             value={openaiOrgID}
