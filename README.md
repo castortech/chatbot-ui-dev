@@ -145,7 +145,7 @@ Get the required values by running:
 supabase status
 ```
 
-Note: Use `API URL` from `supabase status` for `SUPABASE_URL`
+Note: Use `API URL` from `supabase status` for `NEXT_PUBLIC_SUPABASE_URL`
 
 Now go to your `.env.local` file and fill in the values.
 
@@ -265,10 +265,10 @@ In the setup page, import your GitHub repository for your hosted instance of Cha
 
 In environment variables, add the following from the values you got above:
 
-- `SUPABASE_URL`
-- `SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
-- `OLLAMA_URL` (only needed when using local Ollama models; default: `http://localhost:11434`)
+- `NEXT_PUBLIC_OLLAMA_URL` (only needed when using local Ollama models; default: `http://localhost:11434`)
 
 You can also add API keys as environment variables.
 
