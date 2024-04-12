@@ -144,7 +144,7 @@ export const GlobalState: FC<GlobalStateProps> = ({ children }) => {
         }
       }
 
-      if (process.env.NEXT_PUBLIC_OLLAMA_URL) {
+      if (process.env.OLLAMA_URL) {
         const localModels = await fetchOllamaModels()
         if (!localModels) return
         setAvailableLocalModels(localModels)
