@@ -9,13 +9,14 @@ import { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { cookies } from "next/headers"
 import { ReactNode } from "react"
+import { PublicEnvScript, env } from 'next-runtime-env';
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 const APP_NAME = "Aidon.ai"
 const APP_DEFAULT_TITLE = "Aidon.ai"
 const APP_TITLE_TEMPLATE = "%s - Aidon.ai"
-const APP_DESCRIPTION = "Chabot UI PWA!"
+const APP_DESCRIPTION = "Aidon Chabot UI PWA!"
 
 interface RootLayoutProps {
   children: ReactNode
@@ -71,9 +72,13 @@ export default async function RootLayout({
   params: { locale }
 }: RootLayoutProps) {
   const cookieStore = cookies()
+  
+  const NEXT_PUBLIC_SUPABASE_URL = env('NEXT_PUBLIC_SUPABASE_URL');
+  const NEXT_PUBLIC_SUPABASE_ANON_KEY = env('NEXT_PUBLIC_SUPABASE_ANON_KEY');
+
   const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    NEXT_PUBLIC_SUPABASE_URL!,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         get(name: string) {
@@ -88,6 +93,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <PublicEnvScript />
+      </head>
       <body className={inter.className}>
         <Providers attribute="class" defaultTheme="dark">
           <TranslationsProvider
