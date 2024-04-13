@@ -9,6 +9,7 @@ import { get } from "@vercel/edge-config"
 import { Metadata } from "next"
 import { cookies, headers } from "next/headers"
 import { redirect } from "next/navigation"
+import { env } from 'next-runtime-env';
 
 export const metadata: Metadata = {
   title: "Login"
@@ -20,9 +21,12 @@ export default async function Login({
   searchParams: { message: string }
 }) {
   const cookieStore = cookies()
+  const NEXT_PUBLIC_SUPABASE_URL = env('NEXT_PUBLIC_SUPABASE_URL');
+  const NEXT_PUBLIC_SUPABASE_ANON_KEY = env('NEXT_PUBLIC_SUPABASE_ANON_KEY');
+
   const supabase = createServerClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    NEXT_PUBLIC_SUPABASE_URL!,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         get(name: string) {
