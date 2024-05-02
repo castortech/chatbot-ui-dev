@@ -198,9 +198,13 @@ export const createDocXFile = async (
   })
 
   if (!response.ok) {
-    const text = await response.text()
-    console.error(`Error processing docx file:${createdFile.id}, status:${response.status}, response:${text}`)
-    toast.error("Failed to process file.")
+    const jsonText = await response.text()
+    const json = JSON.parse(jsonText)
+    console.error(`Error processing docx 
+		file:${createdFile.id}, status:${response.status}, response:${json.message}`)
+    toast.error("Failed to process file. Reason:" + json.message, {
+      duration: 10000
+    })
     await deleteFile(createdFile.id)
   }
 
